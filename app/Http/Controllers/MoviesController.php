@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class MoviesController extends Controller
 {
@@ -17,9 +18,12 @@ class MoviesController extends Controller
     }
     public function post(Request $request)
     {
+        $now = Carbon::now();
         $param = [
             "title" => $request->title,
-            "release_date" => $request->release_date
+            "release_date" => $request->release_date,
+            "created_at" => $now,
+            "updated_at" => $now
         ];
         DB::table('movies')->insert($param);
         return response()->json([
