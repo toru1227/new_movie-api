@@ -24,9 +24,14 @@ class MoviesController extends Controller
                     $count++;
                 }
             }
+            if ($score > 0) {
+                $average = round($score / $count, 2);
+            } else {
+                $average = 0;
+            }
             $item_data = [
                 "data" => $item,
-                "average" => round($score / $count, 2)
+                "average" => $average
             ];
             array_push($items_data, $item_data);
         }
