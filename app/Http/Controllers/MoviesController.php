@@ -12,27 +12,27 @@ class MoviesController extends Controller
     public function get()
     {
         $items = DB::table('movies')->get();
-        // $score = [];
-        // $items_data = [];
-        // foreach ($items as $item) {
-        //     $reviews = DB::table('reviews')->where('movie_id', $item->id)->get();
-        //     $score = 0;
-        //     $count = 0;
-        //     foreach ($reviews as $review) {
-        //         for ($i = 0; $i < count($reviews); $i++) {
-        //             $score += $review->point;
-        //             $count++;
-        //         }
-        //     }
-        //     $item_data = [
-        //         "data" => $item,
-        //         "average" => round($score / $count, 2)
-        //     ];
-        //     array_push($items_data, $item_data);
-        // }
+        $score = [];
+        $items_data = [];
+        foreach ($items as $item) {
+            $reviews = DB::table('reviews')->where('movie_id', $item->id)->get();
+            $score = 0;
+            $count = 0;
+            foreach ($reviews as $review) {
+                for ($i = 0; $i < count($reviews); $i++) {
+                    $score += $review->point;
+                    $count++;
+                }
+            }
+            $item_data = [
+                "data" => $item,
+                "average" => round($score / $count, 2)
+            ];
+            array_push($items_data, $item_data);
+        }
         return response()->json([
             'message' => 'OK',
-            'data' => $items
+            'data' => $items_data
         ], 200);
     }
 
