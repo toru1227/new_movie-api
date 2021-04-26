@@ -4,22 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 
-class LoginController extends Controller
+class Master_loginController extends Controller
 {
     public function post(Request $request)
     {
-        $items = DB::table('users')->where('email', $request->email)->first();
-        if(!$items){
+        $item = DB::table('master_user')->where('email', $request->email)->first();
+        if (!$item) {
             return response()->json([
                 'auth' => false
             ], 200);
         }
-        
-        if (Hash::check($request->password, $items->password)) {
+        if ($item->password == $request->password) {
             return response()->json([
                 'auth' => true
+
             ], 200);
         } else {
             return response()->json([
