@@ -44,6 +44,7 @@ class MoviesController extends Controller
     public function post(Request $request)
     {
         $now = Carbon::now();
+        
         $param = [
             "title" => $request->title,
             "release_date" => $request->release_date,
@@ -56,4 +57,5 @@ class MoviesController extends Controller
             'data' => $param
         ], 200);
     }
+
 }

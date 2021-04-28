@@ -59,14 +59,7 @@ class ReviewsController extends Controller
             $like = DB::table('likes')->where('review_id', $item->id)->get();
             $user_id = $item->user_id;
             $user = DB::table('users')->where('id', (int)$user_id)->first();
-            // $likes_data = ["like" => $like];
-            // $user_data = ["name" => $user];
-            // array_push($items_data, $item);
-            // array_push($items_data, $likes_data);
-            // array_push($items_data, $user_data);
-            // echo '<pre>';
-            // print_r($user);
-            // echo '<pre>';
+        
             $item_data = [
                 "item" => $item,
                 "like" => $like,

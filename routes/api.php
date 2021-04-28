@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EditController;
+use App\Http\Controllers\EditMovieController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\LikesController;
 use App\Http\Controllers\LoginController;
@@ -25,16 +26,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::apiResource('/review', ReviewsController::class);
-Route::get('/', [MoviesController::class, 'get']);
-Route::post('/movie_post', [MoviesController::class, 'post']);
-Route::get('/edit', [EditController::class, 'edit']);
-Route::post('/edit', [EditController::class, 'update']);
 Route::post('/signup', [RegisterController::class, 'post']);
 Route::post('/login', [LoginController::class, 'post']);
 Route::post('/logout', [LogoutController::class, 'post']);
+
 Route::get('/user_review', [UserReviewController::class, 'get']);
 Route::get('/user', [UsersController::class, 'get']);
 Route::post('/like', [LikesController::class, 'post']);
 Route::delete('/like', [LikesController::class, 'delete']);
+Route::get('/edit', [EditController::class, 'edit']);
+Route::post('/edit', [EditController::class, 'update']);
+
+
 Route::post('/master_login',[Master_loginController::class,'post']);
 Route::post('/master_logout',[Master_logoutController::class,'post']);
+Route::get('/', [MoviesController::class, 'get']);
+Route::post('/movie_post', [MoviesController::class, 'post']);
+Route::get('/movie_edit',[EditMovieController::class,'get']);
+Route::post('/movie_edit',[EditMovieController::class,'update']);
+Route::delete('/movie_edit',[EditMovieController::class,'delete']);
