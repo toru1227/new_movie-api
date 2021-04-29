@@ -38,11 +38,11 @@ class ReviewsController extends Controller
         $item->content = $request->content;
         $item->point = $request->point;
         $item->save();
-        return response()->json([
-            'message' => 'Review created successfully',
-            'data' => $item
-        ], 200);
-    }
+            return response()->json([
+                'message' => 'created',
+                'data' => $item
+            ], 200);
+        }
 
     /**
      * Display the specified resource.
@@ -59,7 +59,7 @@ class ReviewsController extends Controller
             $like = DB::table('likes')->where('review_id', $item->id)->get();
             $user_id = $item->user_id;
             $user = DB::table('users')->where('id', (int)$user_id)->first();
-        
+
             $item_data = [
                 "item" => $item,
                 "like" => $like,
