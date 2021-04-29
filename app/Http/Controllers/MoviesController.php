@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\Review;
+// use App\Models\Review;
+use App\Models\Movie;
 use Carbon\Carbon;
 
 class MoviesController extends Controller
@@ -43,19 +44,30 @@ class MoviesController extends Controller
 
     public function post(Request $request)
     {
-        $now = Carbon::now();
-        
-        $param = [
-            "title" => $request->title,
-            "release_date" => $request->release_date,
-            "created_at" => $now,
-            "updated_at" => $now
-        ];
-        DB::table('movies')->insert($param);
+        $item = new Movie;
+        $now=Carbon::now();
+        $item->title = $request->title;
+        $item->release_date = $request->release_date;
+        $item->created_at =$now;
+        $item->updated_at = $now;
+        $item->save();
         return response()->json([
-            'message' => "movie created successfully",
-            'data' => $param
+            'message' => 'Movie created successfully',
+            'data' => $item
         ], 200);
+        // $now = Carbon::now();
+
+        // $param = [
+        //     "title" => $request->title,
+        //     "release_date" => $request->release_date,
+        //     "created_at" => $now,
+        //     "updated_at" => $now
+        // ];
+        // DB::table('movies')->insert($param);
+        // return response()->json([
+        //     'message' => "movie created successfully",
+        //     'data' => $param
+        // ], 200);
     }
 
 }
