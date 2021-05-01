@@ -13,6 +13,13 @@ class RegisterController extends Controller
     {
         $now = Carbon::now();
         $hash_password = Hash::make($request->password);
+        $error=DB::table('users')->where('email',$request->email)->get();
+        if($error){
+            return response()->json([
+                'message' => 'duplicate',
+                'data' => $request->email
+            ], 200);
+        }
         $param = [
             "name" => $request->name,
             "email" => $request->email,
@@ -25,5 +32,5 @@ class RegisterController extends Controller
             'message' => 'User created successfully',
             'data' => $param
         ], 200);
-    }
+  }
 }
