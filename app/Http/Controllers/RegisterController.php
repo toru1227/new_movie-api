@@ -13,7 +13,7 @@ class RegisterController extends Controller
     {
         $now = Carbon::now();
         $hash_password = Hash::make($request->password);
-        $error=DB::table('users')->where('email',$request->email)->get();
+        $error=DB::table('users')->where('email',$request->email)->first();
         if($error){
             return response()->json([
                 'message' => 'duplicate',
