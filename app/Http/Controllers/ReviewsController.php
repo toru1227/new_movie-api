@@ -33,10 +33,12 @@ class ReviewsController extends Controller
     {
 
         $item = new Review;
+        $now=Carbon::now();
         $item->movie_id = $request->movie_id;
         $item->user_id = $request->user_id;
         $item->content = $request->content;
         $item->point = $request->point;
+        $item->date=$now->format('Y年m月d日');
         $item->save();
             return response()->json([
                 'message' => 'created',
