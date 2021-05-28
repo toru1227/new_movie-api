@@ -49,6 +49,7 @@ class MoviesController extends Controller
         $item->title = $request->title;
         $item->release_date = $request->release_date;
         $item->picture=$request->picture;
+        $item->text=$request->text;
         $item->created_at =$now;
         $item->updated_at = $now;
         $item->save();
