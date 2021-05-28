@@ -28,7 +28,7 @@ class EditMovieController extends Controller
         $param = [
             'title' => $request->title,
             'release_date' => $request->release_date,
-            'text'=>$request->release_date
+            'text'=>$request->text
         ];
         DB::table('movies')->where('id', $request->id)->update($param);
         return response()->json([
