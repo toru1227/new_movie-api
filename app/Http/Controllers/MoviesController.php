@@ -52,9 +52,9 @@ class MoviesController extends Controller
         $item->created_at =$now;
         $item->updated_at = $now;
         $item->save();
-        if($request->picture!=null){
-            $request->picture->storeAs('public/images',$request->picture.'.jpg');
-        }
+        // if($request->picture!=null){
+        //     $request->picture->storeAs('public/images',$request->picture.'.jpg');
+        // }
         return response()->json([
             'message' => 'Movie created successfully',
             'data' => $item
